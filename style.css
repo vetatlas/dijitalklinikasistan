@@ -1,0 +1,614 @@
+/* ========== PREMIUM GLOBAL STILLER ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #0ea5e9;
+    --accent: #f43f5e;
+    --bg-dark: #0b0f19;
+    --bg-card: rgba(20, 28, 40, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #ffffff;
+    --text-secondary: #a0aec0;
+    --shadow-sm: 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    --radius-xl: 24px;
+    --radius-lg: 18px;
+    --radius-md: 12px;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: radial-gradient(circle at 20% 30%, #1e293b, #0b0f19);
+    color: var(--text-primary);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: rgba(10, 15, 25, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Header */
+.app-header {
+    padding: 20px 20px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+}
+
+#page-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.icon-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    backdrop-filter: blur(5px);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.icon-btn:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: var(--primary);
+}
+
+/* Main View Container */
+.view-container {
+    flex: 1;
+    padding: 10px 16px 20px;
+    overflow-y: auto;
+    position: relative;
+    height: 100%;
+}
+
+.view {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+.view.active-view {
+    display: block;
+    opacity: 1;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 12px 20px;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--glass-border);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 40px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.nav-item i {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+.nav-item.active {
+    color: white;
+    background: var(--primary);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+.nav-item span {
+    font-size: 0.7rem;
+}
+
+/* Premium Kartlar */
+.premium-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.2s, border-color 0.2s;
+}
+.premium-card:active {
+    transform: scale(0.98);
+    border-color: var(--primary);
+}
+
+/* Grid Butonlar (Ana Sayfa) */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.menu-btn {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 28px;
+    padding: 24px 12px;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    backdrop-filter: blur(5px);
+    box-shadow: var(--shadow-sm);
+    transition: 0.2s;
+}
+.menu-btn i {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    display: block;
+    background: linear-gradient(135deg, #a5b4fc, #6366f1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.menu-btn span {
+    font-size: 1rem;
+}
+.menu-btn:active {
+    background: var(--primary);
+    transform: translateY(-3px);
+}
+.menu-btn:active i {
+    color: white;
+    background: none;
+    -webkit-text-fill-color: white;
+}
+
+/* Butonlar */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 1rem;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    transition: 0.2s;
+}
+.btn-primary:active {
+    background: var(--primary-dark);
+    transform: scale(0.98);
+}
+
+/* Modal */
+.modal-container {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.2s ease;
+}
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Swipe Kart Görünümü */
+#swipe-view {
+    position: fixed;
+    inset: 0;
+    background: #0b0f19;
+    z-index: 2000;
+    display: none;
+    flex-direction: column;
+}
+.swipe-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.swipe-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.swipe-card {
+    background: #1e293b;
+    border-radius: 32px;
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+    min-height: 400px;
+    box-shadow: 0 30px 40px rgba(0,0,0,0.6);
+    border: 1px solid #334155;
+    color: white;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+.swipe-card img {
+    max-width: 100%;
+    border-radius: 20px;
+    margin: 15px 0;
+}
+/* ========== RESPONSIVE DÜZENLEMELER ========== */
+
+/* Tablet ve daha büyük ekranlar için */
+@media (min-width: 768px) {
+    #app {
+        max-width: 1200px;
+        margin: 20px auto;
+        border-radius: 40px;
+        min-height: calc(100vh - 40px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .view-container {
+        padding: 20px 30px;
+    }
+
+    /* Grid yapıları geniş ekranda daha fazla sütun */
+    .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Ders kartları grid görünüm */
+    #courses-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    .premium-card {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .premium-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.5);
+        border-color: var(--primary);
+    }
+
+    /* Header yazı boyutu */
+    #page-title {
+        font-size: 2.2rem;
+    }
+
+    /* Alt navigasyon daha geniş */
+    .bottom-nav {
+        max-width: 600px;
+        margin: 0 auto;
+        border-radius: 60px 60px 0 0;
+        padding: 12px 24px;
+    }
+
+    .nav-item {
+        padding: 12px 24px;
+    }
+}
+
+/* Büyük masaüstü ekranlar */
+@media (min-width: 1024px) {
+    .grid-2 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .menu-btn {
+        padding: 30px 20px;
+    }
+    .menu-btn i {
+        font-size: 3rem;
+    }
+
+    /* Swipe kart geniş ekranda daha büyük */
+    .swipe-card {
+        max-width: 600px;
+        min-height: 500px;
+        padding: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Mobil yatay (landscape) mod için */
+@media (max-width: 767px) and (orientation: landscape) {
+    .bottom-nav {
+        padding: 6px 12px;
+    }
+    .view-container {
+        padding: 10px 16px;
+    }
+}
+/* Swipe View */
+#swipe-view {
+    animation: fadeIn 0.2s;
+}
+
+.swipe-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.swipe-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: pan-y;
+}
+
+.swipe-card {
+    background: var(--bg-card);
+    border-radius: 32px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    min-height: 400px;
+    box-shadow: 0 30px 40px rgba(0,0,0,0.7);
+    border: 1px solid var(--glass-border);
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s;
+}
+
+.swipe-card img {
+    max-width: 100%;
+    border-radius: 20px;
+    margin: 10px 0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+/* ========== PREMIUM HOVER EFEKTLERİ ========== */
+
+/* Tüm tıklanabilir elementlere yumuşak geçiş */
+.menu-btn,
+.premium-card,
+.nav-item,
+.icon-btn,
+.btn-primary,
+.btn-secondary {
+    transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Ana sayfa büyük butonlar */
+.menu-btn:hover {
+    background: linear-gradient(145deg, var(--primary-dark), var(--primary));
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+.menu-btn:hover i {
+    color: white;
+    background: none;
+    -webkit-text-fill-color: white;
+}
+
+/* Premium kartlar (dersler, konular, notlar) */
+.premium-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 20px 30px -8px rgba(0, 0, 0, 0.6);
+    border-color: var(--primary);
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(12px);
+}
+
+/* Alt navigasyon butonları */
+.nav-item:hover {
+    background: rgba(99, 102, 241, 0.15);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* İkon butonları (profil, geri) */
+.icon-btn:hover {
+    background: var(--primary);
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 15px rgba(99, 102, 241, 0.3);
+}
+.icon-btn:hover i {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+
+/* Birincil butonlar (Ekle, Kaydet) */
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.5);
+}
+
+/* İkincil butonlar (İptal) */
+.btn-secondary:hover {
+    background: #475569;
+    transform: translateY(-2px);
+}
+
+/* Modal içindeki input alanları */
+input:hover,
+input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    transition: all 0.2s;
+}
+
+/* Swipe kart içindeki gezinme butonları */
+.swipe-header .icon-btn:hover,
+#swipe-view .icon-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+/* Aktif sayfa göstergesi (alt menü) */
+.nav-item.active:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Mobil cihazlarda dokunmatik geri bildirimi */
+@media (hover: hover) {
+    /* Sadece fare olan cihazlarda hover çalışsın */
+    .menu-btn:active,
+    .premium-card:active,
+    .btn-primary:active {
+        transform: scale(0.97);
+        transition-duration: 0.1s;
+    }
+}
+.menu-btn i,
+.icon-btn i {
+    transition: transform 0.3s ease;
+}
+.menu-btn:hover i {
+    transform: scale(1.15) rotate(2deg);
+}
+.icon-btn:hover i {
+    transform: scale(1.2);
+}
+.bottom-nav {
+    display: flex;
+    justify-content: flex-start; /* soldan başlasın */
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 8px 8px 20px;
+    gap: 4px;
+}
+.bottom-nav::-webkit-scrollbar {
+    display: none;
+}
+.nav-item {
+    flex-shrink: 0;
+    min-width: 70px;
+}
+/* ========== PREMIUM SPINNER ========== */
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(99, 102, 241, 0.2);
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+}
+/* Toast animasyonu */
+@keyframes slideUp {
+    from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+    to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+/* Loading Spinner için */
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* ========== PREMIUM LOADING OVERLAY ========== */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(11, 15, 25, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loading-spinner {
+    width: 70px;
+    height: 70px;
+    border: 4px solid rgba(99, 102, 241, 0.1);
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #fff, #a5b4fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Alternatif premium spinner (çift halka) */
+.loading-double-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+.loading-double-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid var(--primary);
+    border-color: var(--primary) transparent var(--primary) transparent;
+    animation: spin 1.2s linear infinite;
+}
