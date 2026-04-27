@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow Okuma - VIP Asistan</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="page-loader"><div class="vip-spinner"><div class="ring outer-ring"></div><div class="ring inner-ring"></div><div class="dot"></div></div></div>
+
+    <header class="top-bar">
+        <h2 style="color: #3B82F6; letter-spacing: 2px;">SLIDESHOW MODU</h2>
+    </header>
+
+    <main class="container">
+        <a href="javascript:history.back()" class="back-button">← Seçim Ekranına Dön</a>
+        
+        <div class="carousel-wrapper">
+            <button id="btnPrev" class="carousel-btn btn-prev">❮</button>
+            
+            <div id="slideContent" class="slide-card">
+                <h3 style="color:#FFF;">İçerik Yükleniyor...</h3>
+            </div>
+            
+            <button id="btnNext" class="carousel-btn btn-next">❯</button>
+        </div>
+        
+        <div id="slideCounter" style="text-align: center; margin-top: 20px; color: #9CA3AF; font-weight: bold; letter-spacing: 2px;"></div>
+    </main>
+
+    <script type="module" src="js/slideshow-okuma.js"></script>
+</body>
+</html>

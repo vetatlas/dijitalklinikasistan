@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konular - Dijital Klinik Asistan</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="page-loader"><div class="vip-spinner"><div class="ring outer-ring"></div><div class="ring inner-ring"></div><div class="dot"></div></div></div>
+
+    <header class="top-bar">
+        <input type="text" class="search-input" placeholder="Konularda ara...">
+    </header>
+
+    <main class="container">
+        <a href="javascript:history.back()" class="back-button">← Derslere Dön</a>
+        
+        <h2 id="dersBasligi" style="margin-bottom: 30px; color: #D4AF37; text-align: center;"></h2>
+
+        <div id="konu-listesi" class="library-grid">
+            </div>
+    </main>
+
+    <script type="module" src="js/konular-app.js"></script>
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".page-loader");
+            loader.classList.add("loader-hidden");
+            loader.addEventListener("transitionend", () => loader.remove());
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Flaşkartlar - Dijital Klinik Asistan</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="page-loader"><div class="vip-spinner"><div class="ring outer-ring"></div><div class="ring inner-ring"></div><div class="dot"></div></div></div>
+
+    <header class="top-bar">
+        <h2 style="color: #D4AF37; letter-spacing: 2px;">FLAŞKART EĞİTİMİ</h2>
+    </header>
+
+    <main class="container">
+        <a href="javascript:history.back()" class="back-button">← Geri Dön</a>
+
+        <div id="flashcardContainer" style="display: none;">
+            
+            <div class="flashcard-wrapper">
+                <div id="flashcard" class="flashcard">
+                    <div class="flashcard-face flashcard-front">
+                        <div id="cardFront" class="flashcard-text">Soru Yükleniyor...</div>
+                        <div class="flashcard-hint">Cevabı Görmek İçin Dokun</div>
+                    </div>
+                    <div class="flashcard-face flashcard-back">
+                        <div id="cardBack" class="flashcard-text">Cevap Yükleniyor...</div>
+                        <div class="flashcard-hint" style="color: rgba(212, 175, 55, 0.6);">Ön Yüze Dönmek İçin Dokun</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard-controls">
+                <button id="btnPrev" class="action-btn" style="padding: 12px 25px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); color: #FFF; background: transparent;">❮ Önceki</button>
+                <div id="cardCounter" style="color: #9CA3AF; font-weight: bold; letter-spacing: 1px;">0 / 0</div>
+                <button id="btnNext" class="primary-btn" style="width: auto; padding: 12px 25px; font-size: 1rem;">Sonraki ❯</button>
+            </div>
+
+        </div>
+
+        <div id="emptyState" style="display: none; text-align: center; margin-top: 50px;">
+            <h3 style="color: #EF4444; font-size: 1.5rem; margin-bottom: 15px;">Flaşkart Bulunamadı</h3>
+            <p style="color: #9CA3AF;">Bu konuya henüz yapay zeka tarafından flaşkart üretilmemiş.</p>
+        </div>
+    </main>
+
+    <script type="module" src="js/flaskart.js"></script>
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".page-loader");
+            loader.classList.add("loader-hidden");
+            loader.addEventListener("transitionend", () => loader.remove());
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kütüphane - Dijital Klinik Asistan</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="page-loader">
+        <div class="vip-spinner">
+            <div class="ring outer-ring"></div>
+            <div class="ring inner-ring"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+    <header class="top-bar">
+        <input type="text" class="search-input" placeholder="Kütüphanede ara...">
+    </header>
+
+    <main class="container">
+        
+        <a href="javascript:history.back()" class="back-button">
+            ← Geri Dön
+        </a>
+
+        <div class="library-grid">
+            
+            <a href="ders-notlari.html" class="premium-card">
+                Ders Notları
+            </a>
+
+            <a href="flaskart.html" class="premium-card">
+                Flaşkart
+            </a>
+
+            <a href="soru-cozumu.html" class="premium-card">
+                Soru Çözümü
+            </a>
+
+        </div>
+    </main>
+    <script>
+        // Sayfa yüklendiğinde çalışacak kusursuz geçiş efekti
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".page-loader");
+            loader.classList.add("loader-hidden");
+            // Animasyon bitince DOM'dan temizleyelim ki arkada tıklamaları engellemesin
+            loader.addEventListener("transitionend", () => {
+                loader.remove();
+            });
+        });
+    </script>  
+    <script type="module" src="../js/arama-motoru.js"></script>
+</body>
+</html>

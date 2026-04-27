@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru Çözümü - VIP Asistan</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="page-loader"><div class="vip-spinner"><div class="ring outer-ring"></div><div class="ring inner-ring"></div><div class="dot"></div></div></div>
+
+    <header class="top-bar">
+        <h2 style="color: #3B82F6; letter-spacing: 2px;">SORU ÇÖZÜM MODÜLÜ</h2>
+    </header>
+
+    <main class="container">
+        <a href="javascript:history.back()" class="back-button">← Geri Dön</a>
+
+        <div class="quiz-container">
+            <div class="stat-bar">
+                <div class="stat-item stat-correct">DOĞRU: <span id="correctCount">0</span></div>
+                <div class="stat-item" style="color: #9CA3AF;" id="questionProgress">Soru: 0 / 0</div>
+                <div class="stat-item stat-wrong">YANLIŞ: <span id="wrongCount">0</span></div>
+            </div>
+
+            <div id="quizArea">
+                <div class="question-card">
+                    <p id="questionText" class="question-text">Sorular yükleniyor...</p>
+                    
+                    <div class="options-grid" id="optionsGrid">
+                        </div>
+
+                    <div id="explanationBox" class="explanation-box">
+                        <div class="explanation-title">VIP ÇÖZÜM ANALİZİ</div>
+                        <p id="explanationText" class="explanation-text"></p>
+                    </div>
+                </div>
+
+                <button id="btnNext" class="primary-btn" style="display: none; width: auto; padding: 15px 40px; margin: 0 auto;">Sonraki Soruya Geç ➔</button>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="js/soru-cozumu.js"></script>
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".page-loader");
+            loader.classList.add("loader-hidden");
+            loader.addEventListener("transitionend", () => loader.remove());
+        });
+    </script>
+</body>
+</html>

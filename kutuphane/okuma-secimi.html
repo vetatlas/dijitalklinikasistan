@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Okuma Modu Seç - VIP Asistan</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="page-loader"><div class="vip-spinner"><div class="ring outer-ring"></div><div class="ring inner-ring"></div><div class="dot"></div></div></div>
+
+    <header class="top-bar">
+        <h2 style="color: #D4AF37; letter-spacing: 2px;">OKUMA MODUNU SEÇİN</h2>
+    </header>
+
+    <main class="container">
+        <a href="javascript:history.back()" class="back-button">← Konulara Dön</a>
+
+        <div class="library-grid" style="max-width: 800px; margin: 0 auto; margin-top: 50px;">
+            
+            <a href="#" id="btnNormal" class="premium-card" style="flex-direction: column; gap: 15px;">
+                <span style="font-size: 2rem;">📄</span>
+                <span>Normal Okuma</span>
+                <span style="font-size: 0.8rem; color: #9CA3AF;">Aşağı kaydırmalı tam ekran</span>
+            </a>
+
+            <a href="#" id="btnSlideshow" class="premium-card" style="flex-direction: column; gap: 15px; border-color: #3B82F6;">
+                <span style="font-size: 2rem;">📱</span>
+                <span style="color: #3B82F6;">Slideshow Okuma</span>
+                <span style="font-size: 0.8rem; color: #9CA3AF;">Yana kaydırmalı akıllı kartlar</span>
+            </a>
+            <a href="#" id="btnFlaskart" class="premium-card" style="flex-direction: column; gap: 15px; border-color: #D4AF37;">
+                <span style="font-size: 2rem;">🃏</span>
+                <span style="color: #D4AF37;">VIP Flaşkartlar</span>
+                <span style="font-size: 0.8rem; color: #9CA3AF;">Akıllı tekrar ve hızlı ezber</span>
+            </a>
+            <a href="#" id="btnSoru" class="premium-card" style="flex-direction: column; gap: 15px; border-color: #10B981;">
+                <span style="font-size: 2rem;">📝</span>
+                <span style="color: #10B981;">Soru Çözümü</span>
+                <span style="font-size: 0.8rem; color: #9CA3AF;">Kendini dene ve yanlışlarını öğren</span>
+            </a>
+
+        </div>
+    </main>
+
+    <script>
+        // Sayfa Yükleme Efekti
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".page-loader");
+            loader.classList.add("loader-hidden");
+            loader.addEventListener("transitionend", () => loader.remove());
+        });
+
+        // URL'den konuId'yi alıp butonların linklerine ekliyoruz!
+        const urlParams = new URLSearchParams(window.location.search);
+        const konuId = urlParams.get('konuId');
+
+        if(konuId) {
+            document.getElementById("btnNormal").href = `normal-okuma.html?konuId=${konuId}`;
+            document.getElementById("btnSlideshow").href = `slideshow-okuma.html?konuId=${konuId}`;
+            document.getElementById("btnSoru").href = `soru-cozumu.html?konuId=${konuId}`;
+            document.getElementById("btnFlaskart").href = `flaskartlar.html?konuId=${konuId}`;
+        } else {
+            alert("Bağlantı hatası! Lütfen önceki sayfaya dönün.");
+        }
+    </script>
+</body>
+</html>

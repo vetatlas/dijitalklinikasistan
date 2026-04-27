@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Kapalı Devre Asistan - VIP</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div id="vipToast" class="vip-toast"><span id="toastMsg"></span></div>
+    
+    <header class="top-bar">
+        <h2 style="color: #D4AF37; letter-spacing: 2px;">KİŞİSEL KLİNİK ASİSTAN</h2>
+    </header>
+
+    <main class="container">
+        <a href="../dashboard.html" class="back-button">← Ana Menüye Dön</a>
+
+        <div style="max-width: 800px; margin: 0 auto 15px auto;">
+            <input type="password" id="apiKeyInput" class="form-input" placeholder="Groq API Key (Sadece bu oturum için)" style="border-color: #EF4444; font-size: 0.85rem; padding: 10px 15px;">
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-header">
+                <span style="color: #F8FAFC; font-weight: bold; font-size: 1.1rem;">Güvenlik Modu: <span style="color: #10B981;">Kütüphane Taraması Aktif</span></span>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message msg-ai">
+                    Merhaba Hocam, hoş geldiniz. Ben senin kişisel dijital asistanınım. Sorularını <strong>sadece kendi kütüphanene eklediğin klinik notlara</strong> dayanarak cevaplayacağım. Dışarıdan asılsız bilgi uydurmam. Bugün hangi vaka üzerinde veya hangi konu hakkında çalışıyoruz şefim?
+                </div>
+            </div>
+
+            <div id="typingIndicator" class="typing-indicator">
+                <span></span><span></span><span></span>
+            </div>
+            <div id="imagePreviewContainer" class="preview-container">
+                <img id="imagePreview" class="preview-img" src="">
+                <button id="btnRemoveImage" class="remove-img-btn" title="Görseli İptal Et">X</button>
+                <span style="color: #10B981; font-size: 0.8rem;">Görsel analize hazır</span>
+            </div>
+            <div class="chat-input-area" style="align-items: center;">
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                
+                <button id="btnUpload" class="action-btn" style="background: transparent; border: none; font-size: 1.5rem; padding: 5px; cursor: pointer;" title="Tahlil veya Fotoğraf Yükle">📸</button>
+                
+                <button id="btnMic" class="action-btn mic-btn" style="background: transparent; border: none; font-size: 1.5rem; padding: 5px; cursor: pointer;" title="Sesli Konuş">🎤</button>
+
+                <textarea id="chatInput" class="chat-input" placeholder="Hocam; vakayı anlat, fotoğraf yükle veya mikrofona konuş..."></textarea>
+                
+                <button id="btnSend" class="primary-btn" style="width: 60px; border-radius: 15px; padding: 0; display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, #D4AF37, #B8860B);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="js/ai-asistan.js"></script>
+</body>
+</html>
