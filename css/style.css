@@ -1,0 +1,858 @@
+/* --- Lüks ve Zarif 'Montserrat' Fontu --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased; /* Yazıları Mac ekranı gibi pürüzsüz yapar */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    /* VIP Derin Koyu Arka Plan - Tam siyah değil, çok derin bir safir/oniks karışımı */
+    background: radial-gradient(circle at top right, #131A2A, #06090F);
+    background-attachment: fixed;
+    color: #E2E8F0;
+    min-height: 100vh;
+    animation: vipFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes vipFadeIn {
+    from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* --- VIP Çift Yörüngeli Yükleme Ekranı --- */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 9, 15, 0.9);
+    backdrop-filter: blur(15px); /* Arka planı buzlu cam yapar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.vip-spinner {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid transparent;
+}
+
+.outer-ring {
+    width: 100%;
+    height: 100%;
+    border-top-color: #D4AF37; /* VIP Altın Rengi */
+    border-bottom-color: #D4AF37;
+    animation: spin 2s linear infinite;
+}
+
+.inner-ring {
+    width: 60%;
+    height: 60%;
+    border-left-color: #3B82F6; /* Premium Klinik Mavisi */
+    border-right-color: #3B82F6;
+    animation: spin 1.5s linear infinite reverse;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #FFFFFF;
+    animation: pulseDot 1.5s ease-in-out infinite;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes pulseDot { 0%, 100% { transform: scale(0.8); opacity: 0.5; } 50% { transform: scale(1.2); opacity: 1; } }
+
+.loader-hidden { opacity: 0; visibility: hidden; }
+
+/* --- Üst Bar ve Arama --- */
+.top-bar {
+    background: rgba(19, 26, 42, 0.7);
+    backdrop-filter: blur(20px); /* Üst barın altı bulanık gözükür (Apple stili) */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.search-input {
+    width: 100%;
+    max-width: 600px;
+    padding: 16px 25px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    font-size: 1rem;
+    color: #FFFFFF;
+    outline: none;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    letter-spacing: 0.5px;
+}
+
+.search-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+.search-input:focus {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: #D4AF37; /* Odaklanınca altın rengi çerçeve */
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+    transform: scale(1.02);
+}
+
+/* --- Konteyner ve Gridler --- */
+.container { padding: 50px 20px; max-width: 1200px; margin: 0 auto; }
+.menu-grid, .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; }
+
+/* --- VIP Glassmorphism Kartlar --- */
+.premium-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px 20px;
+    border-radius: 16px;
+    color: #E2E8F0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Yazıyı tam ortaya hizalar */
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+/* Kartın içine çok hafif bir ışık süzmesi ekliyoruz */
+.premium-card::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transform: skewX(-20deg); transition: all 0.7s ease;
+}
+
+.premium-card:hover::before { left: 150%; }
+
+.premium-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-color: rgba(212, 175, 55, 0.3); /* Üzerine gelince çok hafif VIP altın yansıması */
+}
+
+/* --- VIP Giriş Ekranı (Login) --- */
+.login-wrapper {
+    display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px;
+}
+
+.login-card {
+    background: rgba(19, 26, 42, 0.6);
+    backdrop-filter: blur(25px);
+    padding: 60px 50px;
+    border-radius: 30px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.login-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    /* Metne VIP Lüks Gradient Efekti */
+    background: linear-gradient(135deg, #FFFFFF 0%, #A0AEC0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+.login-subtitle { color: rgba(255, 255, 255, 0.5); margin-bottom: 40px; font-size: 0.95rem; font-weight: 300; }
+
+.input-group label {
+    display: block; margin-bottom: 10px; color: rgba(255, 255, 255, 0.7);
+    font-weight: 500; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; text-align: left;
+}
+
+.form-input {
+    width: 100%; padding: 18px 20px;
+    background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px; font-size: 1rem; color: #FFFFFF; outline: none;
+    transition: all 0.3s ease; margin-bottom: 25px;
+}
+
+.form-input:focus {
+    background: rgba(0, 0, 0, 0.4); border-color: #3B82F6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+.primary-btn {
+    width: 100%; padding: 18px;
+    background: linear-gradient(135deg, #1D4ED8, #0F172A);
+    color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px;
+    font-size: 1.1rem; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 2px;
+    transition: all 0.4s ease; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); position: relative; overflow: hidden;
+}
+
+.primary-btn:hover {
+    background: linear-gradient(135deg, #2563EB, #1E293B);
+    transform: translateY(-3px); box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4); border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- Geri Dön Butonu VIP --- */
+.back-button {
+    display: inline-flex; align-items: center; padding: 12px 25px; margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px;
+    color: rgba(255, 255, 255, 0.6); font-size: 0.95rem; font-weight: 500; cursor: pointer; text-decoration: none;
+    transition: all 0.3s ease; backdrop-filter: blur(10px); text-transform: uppercase; letter-spacing: 1px;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.08); color: #FFFFFF; transform: translateX(-8px); border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* =========================================
+   👑 VIP MOBİL OPTİMİZASYON (KOMPAKT & ZARİF)
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. Genel Boşluklar ve Tipografi (Daha Küçük ve Kibar) */
+    .container { padding: 15px 10px; }
+    body { font-size: 0.85rem; } /* Genel yazılar küçüldü */
+    .top-bar { padding: 10px 15px; backdrop-filter: blur(15px); }
+    .top-bar h2 { font-size: 1.1rem; } /* Üst başlık zarifleştirildi */
+    
+    .search-input { 
+        padding: 10px 15px; 
+        font-size: 0.85rem; 
+        border-radius: 15px; 
+    }
+
+    /* 2. Grid ve Kartlar (Kompakt ve İnce) */
+    .menu-grid, .library-grid { gap: 10px; }
+    .premium-card { 
+        padding: 15px; 
+        min-height: 80px; /* Kart yüksekliği ciddi oranda azaltıldı */
+        border-radius: 14px; 
+        font-size: 0.95rem; /* Buton yazıları küçültüldü */
+    }
+
+    /* 3. Normal Okuma Ekranı (Minimalist) */
+    .reading-container { padding: 20px 15px; border-radius: 14px; }
+    .reading-title { font-size: 1.3rem; margin-bottom: 15px; }
+    .reading-content { font-size: 0.9rem; line-height: 1.6; }
+
+    /* 4. Slideshow Ekranı (Zarif Kartlar) */
+    .slide-card { padding: 20px 15px; min-height: 45vh; border-radius: 16px; }
+    .slide-text { font-size: 0.95rem; line-height: 1.5; }
+    .carousel-wrapper { margin-bottom: 60px; }
+    
+    .carousel-btn {
+        width: 40px; /* Butonlar daha kibar */
+        height: 40px;
+        font-size: 1rem;
+        bottom: -55px; 
+        top: auto; 
+        transform: none;
+        background: rgba(59, 130, 246, 0.15);
+    }
+    .btn-prev { left: 20px; }
+    .btn-next { right: 20px; }
+    .slide-card img, .reading-container img { max-height: 30vh; border-radius: 8px; margin: 10px auto; }
+
+    /* 5. Yönetim Paneli ve İşlem Butonları */
+    .admin-list-item { gap: 8px; padding: 12px 10px; }
+    .action-btn { 
+        padding: 8px 0; /* Düzenle/Sil butonları daraltıldı */
+        font-size: 0.8rem; 
+        border-radius: 8px;
+    }
+    .primary-btn { 
+        padding: 12px; 
+        font-size: 0.9rem; 
+        border-radius: 10px; 
+    }
+    .back-button { 
+        padding: 8px 15px; 
+        font-size: 0.8rem; 
+        margin-bottom: 20px; 
+    }
+
+    /* 6. Giriş Ekranı ve Formlar */
+    .login-card { padding: 30px 20px; border-radius: 16px; }
+    .login-title { font-size: 1.4rem; }
+    .form-input { padding: 12px 15px; font-size: 0.85rem; border-radius: 10px; }
+    .input-group label { font-size: 0.75rem; margin-bottom: 5px; }
+    .editor-container { padding: 15px 10px; }
+    .header-selects { flex-direction: column; gap: 8px; }
+}
+/* =========================================
+   VIP UYARI (TOAST) BİLDİRİM SİSTEMİ
+   ========================================= */
+.vip-toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(19, 26, 42, 0.95);
+    backdrop-filter: blur(15px);
+    border-left: 4px solid #D4AF37; /* VIP Altın çizgi */
+    color: #FFFFFF;
+    padding: 18px 25px;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10000;
+    transform: translateX(150%);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.vip-toast.show { transform: translateX(0); }
+.vip-toast.error { border-left-color: #EF4444; }
+
+/* =========================================
+   YÖNETİM PANELİ LİSTE VE BUTON STİLLERİ
+   ========================================= */
+.admin-list-container {
+    margin-top: 30px;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.admin-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #CBD5E1;
+    transition: background 0.3s;
+}
+.admin-list-item:hover { background: rgba(255, 255, 255, 0.03); color: #FFF; }
+.admin-list-item:last-child { border-bottom: none; }
+
+.action-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: 5px;
+}
+.btn-edit { background: rgba(59, 130, 246, 0.2); color: #3B82F6; }
+.btn-edit:hover { background: #3B82F6; color: #FFF; }
+.btn-delete { background: rgba(239, 68, 68, 0.2); color: #EF4444; }
+.btn-delete:hover { background: #EF4444; color: #FFF; }
+/* =========================================
+   VIP TAM EKRAN GÖRSEL (LIGHTBOX) MOTORU
+   ========================================= */
+.vip-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 9, 15, 0.95);
+    backdrop-filter: blur(15px);
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    cursor: zoom-out;
+}
+.vip-lightbox.active { opacity: 1; visibility: visible; }
+.vip-lightbox img {
+    max-width: 95%;
+    max-height: 95%;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+}
+/* Resmin içindeyken tıklayınca büyümesi için özel sınıf */
+.vip-lightbox img.zoomed { transform: scale(1.5); cursor: zoom-out; }
+
+/* Okuma Ekranlarındaki Tıklanabilir Resimler */
+.zoomable-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin: 20px 0;
+    cursor: zoom-in;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.zoomable-image:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3); }
+
+/* =========================================
+   YENİ TEKLİ SLIDESHOW VE KUSURSUZ GÖRSEL YAPISI
+   ========================================= */
+.carousel-wrapper {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-card {
+    background: rgba(19, 26, 42, 0.8);
+    backdrop-filter: blur(25px);
+    border-radius: 24px;
+    padding: 40px 30px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* İçerikleri tam ortaya hizalar */
+    text-align: center;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    overflow: hidden; /* KARTTAN TAŞMALARI KESİNLİKLE ENGELLER */
+}
+
+/* Editörden gelen tüm resimler için VIP sığdırma kuralı */
+.slide-card img, .reading-container img {
+    max-width: 100%;
+    max-height: 40vh; /* Ekranın yüzde 40'ından fazlasını kaplamasına izin vermez */
+    object-fit: contain; /* RESMİ ASLA KESMEZ, KARTA ORANTILI SIĞDIRIR */
+    border-radius: 12px;
+    margin: 15px auto;
+    display: block;
+    cursor: zoom-in;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.slide-card img:hover, .reading-container img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFF;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.carousel-btn:hover { background: #3B82F6; border-color: #3B82F6; transform: translateY(-50%) scale(1.1); }
+.btn-prev { left: -70px; }
+.btn-next { right: -70px; }
+
+@media (max-width: 850px) {
+    .btn-prev { left: 10px; top: auto; bottom: -70px; transform: none; }
+    .btn-next { right: 10px; top: auto; bottom: -70px; transform: none; }
+    .carousel-wrapper { margin-bottom: 80px; }
+    .slide-card img, .reading-container img { max-height: 30vh; } /* Mobilde resmi biraz daha küçültür */
+}
+/* =========================================
+   🔍 VIP CANLI ARAMA MOTORU (LIVE SEARCH)
+   ========================================= */
+.top-bar { position: sticky; /* Önceden vardı, motor için çok önemli */ }
+
+.search-results-container {
+    position: absolute;
+    top: 80px; /* Üst barın hemen altı */
+    width: 100%;
+    max-width: 600px;
+    background: rgba(19, 26, 42, 0.95);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(212, 175, 55, 0.3); /* VIP Altın Çerçeve */
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 9999;
+    display: none; /* JS ile arama yapılınca açılacak */
+    animation: fadeInDown 0.3s ease forwards;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.search-result-item {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #E2E8F0;
+    transition: all 0.3s ease;
+}
+
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { 
+    background: rgba(59, 130, 246, 0.1); 
+    border-left: 4px solid #D4AF37; 
+}
+
+.search-title { font-weight: 600; font-size: 1.05rem; color: #F8FAFC; margin-bottom: 5px; }
+.search-context { font-size: 0.85rem; color: #9CA3AF; }
+
+/* Aranan kelimeyi altın rengiyle parlatma */
+.search-highlight { 
+    color: #D4AF37; 
+    background: rgba(212, 175, 55, 0.1); 
+    border-radius: 4px; 
+    padding: 0 2px; 
+}
+
+/* Mobilde arama sonuçları hizalaması */
+@media (max-width: 768px) {
+    .search-results-container { 
+        top: 65px; 
+        max-width: calc(100% - 30px); 
+    }
+}
+/* =========================================
+   📝 VIP SORU ÇÖZÜM VE İSTATİSTİK SİSTEMİ
+   ========================================= */
+.quiz-container { max-width: 850px; margin: 0 auto; }
+
+/* Doğru-Yanlış İstatistik Barı */
+.stat-bar {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(19, 26, 42, 0.6);
+    padding: 15px 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.stat-item { font-weight: 700; letter-spacing: 1px; font-size: 0.9rem; }
+.stat-correct { color: #10B981; }
+.stat-wrong { color: #EF4444; }
+
+/* Soru Kartı */
+.question-card {
+    background: rgba(19, 26, 42, 0.8);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    margin-bottom: 30px;
+}
+.question-text { font-size: 1.3rem; line-height: 1.6; color: #F8FAFC; margin-bottom: 35px; }
+
+/* 5 Seçenekli Şıklar */
+.options-grid { display: flex; flex-direction: column; gap: 15px; }
+.option-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 18px 25px;
+    border-radius: 15px;
+    color: #CBD5E1;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+}
+.option-btn:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(59, 130, 246, 0.5); transform: translateX(10px); }
+
+/* Cevap Durumları */
+.option-btn.correct { background: rgba(16, 185, 129, 0.2) !important; border-color: #10B981 !important; color: #10B981 !important; font-weight: 700; }
+.option-btn.wrong { background: rgba(239, 68, 68, 0.2) !important; border-color: #EF4444 !important; color: #EF4444 !important; }
+.option-btn.disabled { pointer-events: none; }
+
+/* VIP Açıklama Kutusu */
+.explanation-box {
+    display: none; /* Başlangıçta gizli */
+    margin-top: 30px;
+    padding: 25px;
+    background: rgba(212, 175, 55, 0.05);
+    border-left: 4px solid #D4AF37;
+    border-radius: 12px;
+    animation: slideUp 0.5s ease;
+}
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.explanation-title { color: #D4AF37; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+.explanation-text { color: #E2E8F0; line-height: 1.6; font-size: 1rem; }
+
+@media (max-width: 768px) {
+    .question-card { padding: 25px 20px; }
+    .question-text { font-size: 1.1rem; }
+    .option-btn { padding: 14px 18px; font-size: 0.95rem; }
+}
+/* =========================================
+   🃏 VIP FLAŞKART SİSTEMİ (3D FLIP)
+   ========================================= */
+.flashcard-wrapper {
+    perspective: 1000px; /* 3D derinlik hissi */
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    height: 400px;
+}
+
+.flashcard {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Kart tıklandığında bu sınıf eklenecek ve dönecek */
+.flashcard.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.flashcard-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Arkası dönükken içeriği gizler */
+    backface-visibility: hidden;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Ön Yüz (Soru/Terim) */
+.flashcard-front {
+    background: rgba(19, 26, 42, 0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #F8FAFC;
+}
+
+/* Arka Yüz (Cevap/Açıklama) */
+.flashcard-back {
+    background: linear-gradient(145deg, #131A2A, #06090F);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #D4AF37; /* VIP Altın Rengi */
+    transform: rotateY(180deg); /* Başlangıçta ters durur */
+}
+
+.flashcard-text {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.flashcard-hint {
+    position: absolute;
+    bottom: 25px;
+    font-size: 0.8rem;
+    color: #9CA3AF;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: pulse 2s infinite;
+}
+
+/* Flaşkart Yönlendirme Butonları */
+.flashcard-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Mobilde Zariflik */
+@media (max-width: 768px) {
+    .flashcard-wrapper { height: 350px; }
+    .flashcard-text { font-size: 1.25rem; }
+    .flashcard-face { padding: 25px; }
+}
+/* =========================================
+   💬 VIP AI CHAT (KAPALI DEVRE ASİSTAN)
+   ========================================= */
+.chat-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(19, 26, 42, 0.8);
+    backdrop-filter: blur(25px);
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    display: flex;
+    flex-direction: column;
+    height: 70vh; /* Ekranın %70'ini kaplar */
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+.chat-header {
+    background: rgba(11, 17, 32, 0.9);
+    padding: 15px 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 25px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Mesaj Baloncukları */
+.message {
+    max-width: 80%;
+    padding: 15px 20px;
+    border-radius: 18px;
+    line-height: 1.5;
+    font-size: 1rem;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Senin Mesajların (Sağda, Mavi) */
+.msg-user {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    color: #FFF;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Asistanın Mesajları (Solda, Altın/Karanlık) */
+.msg-ai {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #E2E8F0;
+    border-bottom-left-radius: 4px;
+}
+.msg-ai strong { color: #D4AF37; } /* Önemli yerleri altın rengi yapar */
+
+/* Yazıyor Animasyonu */
+.typing-indicator {
+    display: flex;
+    gap: 5px;
+    padding: 10px 15px;
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border-bottom-left-radius: 4px;
+    display: none; /* JS ile açılır */
+}
+.typing-indicator span {
+    width: 8px; height: 8px; background: #D4AF37; border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+.typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+@keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+
+/* Chat Giriş Alanı */
+.chat-input-area {
+    padding: 20px;
+    background: rgba(11, 17, 32, 0.9);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    gap: 15px;
+}
+.chat-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 15px 20px;
+    color: #FFF;
+    font-size: 1rem;
+    resize: none;
+    height: 55px;
+    font-family: 'Montserrat', sans-serif;
+}
+.chat-input:focus { outline: none; border-color: #D4AF37; }
+
+/* Mobilde Yükseklik Ayarı */
+@media (max-width: 768px) {
+    .chat-container { height: 75vh; }
+    .message { max-width: 90%; font-size: 0.95rem; }
+}
+/* VIP SES VE GÖRSEL BUTONLARI */
+.mic-btn.listening { animation: pulse-red 1.5s infinite; color: #EF4444 !important; }
+@keyframes pulse-red { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { transform: scale(1.2); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { transform: scale(1); } }
+.preview-container { display: none; padding: 10px 20px; background: rgba(11, 17, 32, 0.95); border-top: 1px solid rgba(255,255,255,0.05); align-items: center; gap: 15px; }
+.preview-img { height: 60px; border-radius: 8px; border: 2px solid #D4AF37; }
+.remove-img-btn { background: #EF4444; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-weight: bold; }
+/* DAKTİLO EFEKTİ */
+.typewriter {
+  overflow: hidden; /* İçeriği gizle */
+  border-right: .15em solid #D4AF37; /* Daktilo imleci */
+  white-space: pre-wrap; /* Satır başlarını koru */
+  margin: 0 auto; /* Ortala */
+  letter-spacing: .15em; /* Harf arası boşluk */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #D4AF37 }
+}
+.history-item {
+    padding: 12px;
+    margin-bottom: 5px;
+    background: transparent;
+    color: #94a3b8;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: 0.3s;
+}
+.history-item:hover { background: #1e293b; color: #fff; }
+.history-item.active { background: #1e293b; color: #D4AF37; border-left: 3px solid #D4AF37; }
+
+/* Mobil uyum için sidebar gizleme gerekebilir ama şimdilik masaüstü odaklı gidelim */
