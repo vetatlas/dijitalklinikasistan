@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Menü - Dijital Klinik Asistan</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page-loader">
+        <div class="vip-spinner">
+            <div class="ring outer-ring"></div>
+            <div class="ring inner-ring"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+    <header class="top-bar">
+        <input type="text" class="search-input" placeholder="İçerik, ders veya görsel ara...">
+    </header>
+
+    <main class="container">
+        <div class="menu-grid">
+            <a href="kutuphane/ders-notlari.html" class="premium-card" style="border-bottom: 3px solid #3B82F6;">
+                <span style="font-size: 2rem; margin-bottom: 10px; display: block;">📚</span>
+                Kütüphane
+            </a>
+            
+            <a href="#" class="premium-card" style="border-bottom: 3px solid #EF4444;">
+                <span style="font-size: 2rem; margin-bottom: 10px; display: block;">🏥</span>
+                Klinik
+            </a>
+            
+            <a href="#" class="premium-card" style="border-bottom: 3px solid #8B5CF6;">
+                <span style="font-size: 2rem; margin-bottom: 10px; display: block;">🚜</span>
+                Çiftlik Yönetimi
+            </a>
+            
+            <a href="kutuphane/ai-asistan.html" class="premium-card" style="border-bottom: 3px solid #10B981;">
+                <span style="font-size: 2rem; margin-bottom: 10px; display: block;">🧠</span>
+                VIP Chat Asistanı
+            </a>
+            
+            <a href="ai_panel/index.html" class="premium-card" style="border-bottom: 3px solid #D4AF37;">
+                <span style="font-size: 2rem; margin-bottom: 10px; display: block;">⚙️</span>
+                AI Yönetim Paneli
+            </a>
+        </div>
+    </main>
+    <script>
+        // Sayfa yüklendiğinde çalışacak kusursuz geçiş efekti
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".page-loader");
+            loader.classList.add("loader-hidden");
+            // Animasyon bitince DOM'dan temizleyelim ki arkada tıklamaları engellemesin
+            loader.addEventListener("transitionend", () => {
+                loader.remove();
+            });
+        });
+    </script>
+    <script type="module" src="js/arama-motoru.js"></script>
+</body>
+</html>
