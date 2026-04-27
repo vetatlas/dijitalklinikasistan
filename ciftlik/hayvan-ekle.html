@@ -1,0 +1,77 @@
+<div class="animal-form-container" style="max-width: 1100px; margin: 20px auto; background: #0f172a; padding: 30px; border-radius: 15px; border: 1px solid #1e293b;">
+    <h2 style="color: #D4AF37; border-bottom: 2px solid #1e293b; padding-bottom: 15px; margin-bottom: 25px;">
+        🚀 Profesyonel Hayvan Kayıt ve Tanımlama
+    </h2>
+
+    <form id="animalForm">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+            <div>
+                <label style="color: #94a3b8; display: block; margin-bottom: 5px;">Küpe No / ID *</label>
+                <input type="text" id="kupeNo" required style="width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px;">
+            </div>
+            <div>
+                <label style="color: #94a3b8; display: block; margin-bottom: 5px;">Hayvan Adı</label>
+                <input type="text" id="hayvanAdi" placeholder="Örn: Sarıkız" style="width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px;">
+            </div>
+            <div>
+                <label style="color: #94a3b8; display: block; margin-bottom: 5px;">Tür</label>
+                <select id="tur" style="width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px;">
+                    <option value="Sığır">Sığır</option>
+                    <option value="Koyun">Koyun</option>
+                    <option value="Keçi">Keçi</option>
+                    <option value="At">At</option>
+                </select>
+            </div>
+            <div>
+                <label style="color: #94a3b8; display: block; margin-bottom: 5px;">Irk</label>
+                <input type="text" id="irk" placeholder="Örn: Holstein, Simmental" style="width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px;">
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; padding: 20px; background: rgba(212, 175, 55, 0.05); border-radius: 10px;">
+            <div>
+                <label style="color: #94a3b8; display: block; margin-bottom: 5px;">Cinsiyet</label>
+                <select id="cinsiyet" style="width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px;">
+                    <option value="Dişi">Dişi</option>
+                    <option value="Erkek">Erkek</option>
+                </select>
+            </div>
+            <div>
+                <label style="color: #94a3b8; display: block; margin-bottom: 5px;">Doğum Tarihi</label>
+                <input type="date" id="dogumTarihi" style="width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px;">
+            </div>
+            <div>
+                <label style="color: #94a3b8; display: block; margin-bottom: 5px;">Üreme Durumu</label>
+                <select id="uremeDurumu" style="width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px;">
+                    <option value="Boş">Boş</option>
+                    <option value="Tohumlandı">Tohumlandı</option>
+                    <option value="Gebe">Gebe</option>
+                    <option value="Kuruda">Kuruda (Beklemede)</option>
+                    <option value="Sağımda">Sağımda</option>
+                </select>
+            </div>
+            <div>
+                <label style="color: #94a3b8; display: block; margin-bottom: 5px;">Grup / Padok</label>
+                <input type="text" id="grup" placeholder="Örn: A-Blok 2. Bölme" style="width: 100%; padding: 12px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px;">
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+            <div>
+                <h4 style="color: #D4AF37; margin-bottom: 10px;">Soy Kütüğü</h4>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="anneId" placeholder="Anne Küpe No" style="flex:1; padding: 12px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px;">
+                    <input type="text" id="babaId" placeholder="Baba (Sperm No)" style="flex:1; padding: 12px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px;">
+                </div>
+            </div>
+            <div>
+                <h4 style="color: #D4AF37; margin-bottom: 10px;">Sağlık & AI Notu</h4>
+                <textarea id="saglikNotu" placeholder="Bilinen kronik sorunlar, alerjiler veya özel bakım talimatları..." style="width: 100%; height: 50px; padding: 12px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px; resize: none;"></textarea>
+            </div>
+        </div>
+
+        <button type="button" id="btnSaveAnimal" style="width: 100%; padding: 18px; background: #D4AF37; color: black; border: none; border-radius: 10px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.3s;">
+            ✅ HAYVANI SİSTEME KAYDET (AI ANALİZİNİ BAŞLAT)
+        </button>
+    </form>
+</div>
