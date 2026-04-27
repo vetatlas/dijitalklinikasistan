@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yapay Zeka Üretim Merkezi - VIP Panel</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .ai-container { max-width: 800px; margin: 0 auto; background: linear-gradient(145deg, #131A2A, #0B1120); padding: 40px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+        .ai-title { color: #D4AF37; text-align: center; margin-bottom: 30px; font-size: 1.8rem; }
+        .api-key-input { border-color: #EF4444 !important; }
+        .ai-loader { display: none; text-align: center; color: #3B82F6; margin-top: 20px; font-weight: bold; animation: pulse 1.5s infinite; }
+    </style>
+</head>
+<body>
+    <div id="vipToast" class="vip-toast"><span id="toastMsg"></span></div>
+
+    <header class="top-bar">
+        <h2 style="color: #D4AF37; letter-spacing: 2px;">AI ÜRETİM MERKEZİ</h2>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">← Yönetim Paneline Dön</a>
+
+        <div class="ai-container">
+            <h3 class="ai-title">Otomatik İçerik Jeneratörü</h3>
+            
+            <form id="aiUretimForm">
+                <div class="input-group" id="apiKeyContainer">
+                    <label style="color: #10B981; font-weight: bold;">Groq API Key (VIP Kasaya Kaydedildi ✅)</label>
+                    <input type="password" id="groqApiKey" class="form-input api-key-input" style="border-color: #10B981;" placeholder="Sistem anahtarı otomatik çekiyor. Değiştirmek istersen buraya yazabilirsin...">
+                </div>
+
+                <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                    <div style="flex: 1;">
+                        <label>Ders</label>
+                        <select id="dersSecimi" class="form-input" required><option value="">Seçiniz...</option></select>
+                    </div>
+                    <div style="flex: 1;">
+                        <label>Konu</label>
+                        <select id="konuSecimi" class="form-input" required><option value="">Önce ders seçin...</option></select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Ne Üretilecek?</label>
+                    <select id="uretimTuru" class="form-input" required>
+                        <option value="flaskart">Flaşkartlar (Örn: 5 adet Terim ve Açıklaması)</option>
+                        <option value="soru">Çoktan Seçmeli Sorular (Örn: 3 adet Test Sorusu)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Özel Talimat (Opsiyonel)</label>
+                    <input type="text" id="ozelTalimat" class="form-input" placeholder="Örn: Sadece kemiklerle ilgili zor sorular olsun...">
+                </div>
+
+                <div class="input-group">
+                    <label>Adet</label>
+                    <input type="number" id="adet" class="form-input" value="5" min="1" max="10" required>
+                </div>
+
+                <button type="submit" id="btnUret" class="primary-btn" style="background: linear-gradient(135deg, #10B981, #059669); font-size: 1.2rem;">🚀 AI İle Üret ve Havuza Gönder</button>
+            </form>
+
+            <div id="aiLoader" class="ai-loader">Yapay Zeka İçerikleri Üretiyor... Lütfen Bekleyin...</div>
+        </div>
+    </main>
+
+    <script type="module" src="js/yapay-zeka.js"></script>
+</body>
+</html>

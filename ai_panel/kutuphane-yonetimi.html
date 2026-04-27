@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kütüphane Yönetimi - VIP Panel</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="page-loader"><div class="vip-spinner"><div class="ring outer-ring"></div><div class="ring inner-ring"></div><div class="dot"></div></div></div>
+
+    <div id="vipToast" class="vip-toast"><span id="toastMsg"></span></div>
+
+    <header class="top-bar">
+        <h2 style="color: #D4AF37; letter-spacing: 2px;">KÜTÜPHANE YÖNETİM MERKEZİ</h2>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-button">← Panele Dön</a>
+
+        <div class="menu-grid">
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+                <div class="login-card" style="margin: 0;">
+                    <h3 class="login-title" style="font-size: 1.5rem;">Yeni Ders Ekle</h3>
+                    <form id="dersEkleForm">
+                        <div class="input-group">
+                            <input type="text" id="yeniDersAdi" class="form-input" placeholder="Örn: Anatomi" required>
+                        </div>
+                        <button type="submit" class="primary-btn">Dersi Kaydet</button>
+                    </form>
+                </div>
+
+                <div class="login-card" style="margin: 0;">
+                    <h3 class="login-title" style="font-size: 1.5rem;">Yeni Konu Ekle</h3>
+                    <form id="konuEkleForm">
+                        <div class="input-group">
+                            <select id="dersSecimi" class="form-input" style="background-color: #0B1120;" required>
+                                <option value="">Ders Yükleniyor...</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="yeniKonuAdi" class="form-input" placeholder="Örn: Kemik Sistemi" required>
+                        </div>
+                        <button type="submit" class="primary-btn">Konuyu Kaydet</button>
+                    </form>
+                </div>
+                <div class="login-card" style="margin: 0; border-color: #D4AF37; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px;">
+                    <h3 class="login-title" style="font-size: 1.5rem; color: #D4AF37; margin-bottom: 20px;">Gelişmiş İçerik Editörü</h3>
+                    <p style="color: #9CA3AF; margin-bottom: 30px; text-align: center;">Kalın, italik, başlık ve görsellerle zenginleştirilmiş uzun tıbbi makaleler oluşturun.</p>
+                    <a href="icerik-editoru.html" class="primary-btn" style="background: linear-gradient(135deg, #D4AF37, #B8860B); text-align: center; text-decoration: none;">VIP Editörü Aç ➔</a>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+                <div class="login-card" style="margin: 0;">
+                    <h3 class="login-title" style="font-size: 1.5rem;">Mevcut Dersler</h3>
+                    <div id="adminDersListesi" class="admin-list-container">
+                        Veriler çekiliyor...
+                    </div>
+                </div>
+
+                <div class="login-card" style="margin: 0;">
+                    <h3 class="login-title" style="font-size: 1.5rem;">Mevcut Konular</h3>
+                    <div id="adminKonuListesi" class="admin-list-container">
+                        Veriler çekiliyor...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="js/yonetim.js"></script>
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".page-loader");
+            loader.classList.add("loader-hidden");
+            loader.addEventListener("transitionend", () => loader.remove());
+        });
+    </script>
+</body>
+</html>

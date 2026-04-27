@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ai Yönetim Paneli - VIP Merkez</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="page-loader"><div class="vip-spinner"><div class="ring outer-ring"></div><div class="ring inner-ring"></div><div class="dot"></div></div></div>
+
+    <header class="top-bar">
+        <h2 style="color: #D4AF37; letter-spacing: 2px;">Aİ YÖNETİM PANELİ</h2>
+    </header>
+
+    <main class="container">
+        <a href="../dashboard.html" class="back-button">← Ana Menüye Dön</a>
+
+        <div class="menu-grid">
+            <a href="yapay-zeka.html" class="premium-card" style="border-bottom: 3px solid #10B981;">
+                <span style="font-size: 2rem; margin-bottom: 10px; display: block;">🚀</span>
+                AI İçerik Üretim Merkezi
+            </a>
+            <a href="kutuphane-yonetimi.html" class="premium-card" style="border-bottom: 3px solid #3B82F6;">
+                <span style="font-size: 2rem; margin-bottom: 10px; display: block;">📚</span>
+                Kütüphane Yönetimi
+            </a>
+            <a href="#" class="premium-card" style="border-bottom: 3px solid #D4AF37;">
+                <span style="font-size: 2rem; margin-bottom: 10px; display: block;">🏥</span>
+                Klinik Yönetimi
+            </a>
+            <a href="#" class="premium-card" style="border-bottom: 3px solid #EF4444;">
+                <span style="font-size: 2rem; margin-bottom: 10px; display: block;">👥</span>
+                Kullanıcı Yönetimi
+            </a>
+        </div>
+    </main>
+
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".page-loader");
+            loader.classList.add("loader-hidden");
+            loader.addEventListener("transitionend", () => loader.remove());
+        });
+    </script>
+</body>
+</html>
