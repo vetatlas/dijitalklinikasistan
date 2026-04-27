@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klinik Vaka Defteri | Başhekim Paneli</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .patient-card {
+            background: #0f172a; border: 1px solid #1e293b; border-radius: 12px;
+            padding: 20px; margin-bottom: 15px; cursor: pointer; transition: 0.3s;
+        }
+        .patient-card:hover { border-color: #D4AF37; transform: translateY(-3px); }
+        .soap-badge {
+            display: inline-block; padding: 4px 10px; border-radius: 5px;
+            font-size: 0.75rem; font-weight: bold; margin-bottom: 10px;
+        }
+        .badge-ai { background: #10B981; color: white; }
+        .soap-content { color: #94a3b8; font-size: 0.9rem; line-height: 1.6; }
+        #searchBar {
+            width: 100%; padding: 15px; background: #1e293b; border: 1px solid #334155;
+            color: white; border-radius: 10px; margin-bottom: 30px; outline: none;
+        }
+    </style>
+</head>
+<body style="background: #0b1120; color: white; font-family: 'Segoe UI', sans-serif;">
+
+    <div style="max-width: 1000px; margin: 0 auto; padding: 40px 20px;">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+            <div>
+                <h1 style="color: #D4AF37; margin: 0;">KLİNİK VAKA DEFTERİ</h1>
+                <p style="color: #64748b;">AI Destekli Resmi Hasta Kayıtları</p>
+            </div>
+            <a href="ai-asistan.html" style="background: #1e293b; color: white; text-decoration: none; padding: 10px 20px; border-radius: 8px;">← Asistan'a Dön</a>
+        </header>
+
+        <input type="text" id="searchBar" placeholder="Hasta adı veya vaka içeriği ile ara...">
+
+        <div id="patientRecordsList">
+            <div style="text-align: center; color: #64748b; padding: 50px;">Kayıtlar yükleniyor...</div>
+        </div>
+    </div>
+
+    <script type="module" src="js/hasta-kayit.js"></script>
+</body>
+</html>
